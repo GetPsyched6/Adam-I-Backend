@@ -14,6 +14,6 @@
 # such as images, design files, etc.
 
 # Configuration files
-/.eslintrc.js
+/.eslintrc.cjs
 /.gitignore
 /.env
