@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import userRoutes from './routes/userRoutes';
 import companyRoutes from './routes/companyRoutes';
 
