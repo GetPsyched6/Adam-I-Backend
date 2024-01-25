@@ -13,7 +13,7 @@ module.exports = {
   rules: {
     quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     indent: ['error', 2, { SwitchCase: 1 }],
-    "import/extensions": '0',
+    'import/extensions': 0,
     'prettier/prettier': [
       'error',
       {

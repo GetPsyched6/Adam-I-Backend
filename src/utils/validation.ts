@@ -1,3 +1,1 @@
-export const validateUserData = (data) => {
-  
-}
+export const validateUserData = data => {};
