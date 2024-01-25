@@ -1,11 +1,14 @@
 import express, { Request, Response } from 'express';
+import userRoutes from './routes/userRoutes';
+import companyRoutes from './routes/companyRoutes';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.get('/', (req: Request, res: Response) => {
-  res.status(418).send('Hello, TypeScript with Node.js!');
-});
+app.use(express.json());
+
+app.use(userRoutes)
+app.use(companyRoutes)
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console

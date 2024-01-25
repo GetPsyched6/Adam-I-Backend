@@ -9,3 +9,29 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id              Int    @id @default(autoincrement())
+  name            String
+  email           String @unique
+  accountPassword String
+}
+
+model Company {
+  id                  Int     @id @default(autoincrement())
+  companyName         String
+  businessType        String
+  numberOfEmployees   Int
+  yearOfEstablishment Int
+  country             String
+  city                String
+  postCode            String?
+  industry            String
+  accountPassword     String
+  companyAddress      String
+  personOfContact     String
+  position            String
+  phoneNumber         String
+  email               String  @unique
+  companyWebsite      String
+}
