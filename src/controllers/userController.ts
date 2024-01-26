@@ -9,14 +9,17 @@ const registerUser = async (req: Request, res: Response) => {
   try {
     const validationError = validateUserData(req.body);
     if (validationError) {
-      return res
-        .status(400)
-        .json({ error: 'Input validation has failed. Please recheck your info.' });
+      return res.status(400).json({
+        error: 'Input validation has failed. Please recheck your info.',
+        message: validationError,
+      });
     }
-    const hashedPassword = await hashPassword(req.body.accountPassword);
+    const userData = { ...req.body };
+    delete userData.confirmPassword;
+    const hashedPassword = await hashPassword(userData.accountPassword);
     const user = await prisma.user.create({
       data: {
-        ...req.body,
+        ...userData,
         accountPassword: hashedPassword,
       },
     });
