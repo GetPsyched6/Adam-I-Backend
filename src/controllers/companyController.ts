@@ -13,17 +13,19 @@ const registerCompany = async (req: Request, res: Response) => {
         .status(400)
         .json({ error: 'Input validation has failed. Please recheck your info.' });
     }
-    const hashedPassword = await hashPassword(req.body.accountPassword);
-    const user = await prisma.user.create({
+    const companyData = { ...req.body };
+    delete companyData.confirmPassword;
+    const hashedPassword = await hashPassword(companyData.accountPassword);
+    const company = await prisma.company.create({
       data: {
-        ...req.body,
+        ...companyData,
         accountPassword: hashedPassword,
       },
     });
     return res.status(201).json({
       message: 'Company Registration Successful!',
-      user: {
-        ...user,
+      company: {
+        ...company,
         accountPassword: '[redacted]',
       },
     });
