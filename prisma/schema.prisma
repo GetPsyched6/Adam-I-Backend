@@ -15,6 +15,7 @@ model User {
   name            String
   email           String @unique
   accountPassword String
+  confirmPassword String
 }
 
 model Company {
@@ -28,6 +29,7 @@ model Company {
   postCode            String?
   industry            String
   accountPassword     String
+  confirmPassword     String
   companyAddress      String
   personOfContact     String
   position            String

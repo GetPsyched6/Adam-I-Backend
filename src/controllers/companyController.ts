@@ -1,13 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import hashPassword from '../utils/password';
-import validateUserData from '../utils/validation';
+import validateCompanyData from '../utils/validateCompany';
 
 const prisma = new PrismaClient();
 
 const registerCompany = async (req: Request, res: Response) => {
   try {
-    const validationError = validateUserData(req.body);
+    const validationError = validateCompanyData(req.body);
     if (validationError) {
       return res
         .status(400)
@@ -21,14 +21,14 @@ const registerCompany = async (req: Request, res: Response) => {
       },
     });
     return res.status(201).json({
-      message: 'User Registration Successful!',
+      message: 'Company Registration Successful!',
       user: {
         ...user,
         accountPassword: '[redacted]',
       },
     });
   } catch (error) {
-    return res.status(500).json({ error: 'User Registration Failed. Please try again later.' });
+    return res.status(500).json({ error: 'Company Registration Failed. Please try again later.' });
   }
 };
 
