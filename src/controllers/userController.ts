@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import hashPassword from '../utils/password';
-import validateUserData from '../utils/validation';
+import validateUserData from '../utils/validateUser';
 
 const prisma = new PrismaClient();
 
