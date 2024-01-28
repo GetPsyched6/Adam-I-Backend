@@ -3,7 +3,10 @@ import { UserData } from '../types/userTypes';
 
 const userSchema = Joi.object({
   name: Joi.string().max(255).required(),
-  email: Joi.string().email().max(255).required(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .max(255)
+    .required(),
   accountPassword: Joi.string()
     .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,128}$/)
     .required(),
