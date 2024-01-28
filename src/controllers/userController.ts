@@ -14,22 +14,26 @@ const registerUser = async (req: Request, res: Response) => {
         message: validationError,
       });
     }
-    const userData = { ...req.body };
-    delete userData.confirmPassword;
-    const hashedPassword = await hashPassword(userData.accountPassword);
-    const user = await prisma.user.create({
-      data: {
-        ...userData,
-        accountPassword: hashedPassword,
-      },
-    });
-    return res.status(201).json({
-      message: 'User Registration Successful!',
-      user: {
-        ...user,
-        accountPassword: '[redacted]',
-      },
-    });
+    try {
+      const userData = { ...req.body };
+      delete userData.confirmPassword;
+      const hashedPassword = await hashPassword(userData.accountPassword);
+      const user = await prisma.user.create({
+        data: {
+          ...userData,
+          accountPassword: hashedPassword,
+        },
+      });
+      return res.status(201).json({
+        message: 'User Registration Successful!',
+        user: {
+          ...user,
+          accountPassword: '[redacted]',
+        },
+      });
+    } catch (error) {
+      return res.status(400).json({ error: (error as Error).message });
+    }
   } catch (error) {
     return res.status(500).json({ error: 'User Registration Failed. Please try again later.' });
   }
