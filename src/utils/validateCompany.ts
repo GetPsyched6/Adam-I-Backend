@@ -7,13 +7,18 @@ const validCountries = Object.values(countries).map(country => country.name);
 const companySchema = Joi.object({
   companyName: Joi.string().max(255).required(),
   businessType: Joi.string().max(255).required(),
-  numberOfEmployees: Joi.number().integer().required(),
-  yearOfEstablishment: Joi.number().integer().min(1500).max(new Date().getFullYear()).required(),
+  numberOfEmployees: Joi.number().integer().strict().required(),
+  yearOfEstablishment: Joi.number()
+    .integer()
+    .strict()
+    .min(1500)
+    .max(new Date().getFullYear())
+    .required(),
   country: Joi.string()
     .valid(...validCountries)
     .required(),
   city: Joi.string().max(255).required(),
-  postCode: Joi.string().max(255),
+  postCode: Joi.string().max(255).allow(null),
   industry: Joi.string().max(255).required(),
   accountPassword: Joi.string()
     .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,128}$/)
