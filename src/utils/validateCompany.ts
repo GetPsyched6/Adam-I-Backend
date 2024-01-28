@@ -30,7 +30,10 @@ const companySchema = Joi.object({
   phoneNumber: Joi.string()
     .pattern(/^[0-9+\-\s]+$/)
     .required(),
-  email: Joi.string().email().max(255).required(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .max(255)
+    .required(),
   companyWebsite: Joi.string()
     .uri({ scheme: ['http', 'https'] })
     .required(),
