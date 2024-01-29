@@ -4,7 +4,6 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "accountPassword" TEXT NOT NULL,
-    "confirmPassword" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -21,7 +20,6 @@ CREATE TABLE "Company" (
     "postCode" TEXT,
     "industry" TEXT NOT NULL,
     "accountPassword" TEXT NOT NULL,
-    "confirmPassword" TEXT NOT NULL,
     "companyAddress" TEXT NOT NULL,
     "personOfContact" TEXT NOT NULL,
     "position" TEXT NOT NULL,
