@@ -18,7 +18,7 @@ const companySchema = Joi.object({
     .valid(...validCountries)
     .required(),
   city: Joi.string().max(255).required(),
-  postCode: Joi.string().max(255).allow(null),
+  postCode: Joi.string().max(255).allow(null).allow(''),
   industry: Joi.string().max(255).required(),
   accountPassword: Joi.string()
     .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,128}$/)
@@ -28,7 +28,7 @@ const companySchema = Joi.object({
   personOfContact: Joi.string().max(255).required(),
   position: Joi.string().max(255).required(),
   phoneNumber: Joi.string()
-    .pattern(/^[0-9+\-\s]+$/)
+    .pattern(/^\+?[0-9-\s]*[0-9]{8,}[0-9-\s]*$/)
     .required(),
   email: Joi.string()
     .email({ tlds: { allow: false } })
