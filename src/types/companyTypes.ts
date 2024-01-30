@@ -1,4 +1,4 @@
-export interface CompanyData {
+export type CompanyType = {
   companyName: string;
   businessType: string;
   numberOfEmployees: number;
@@ -15,4 +15,4 @@ export interface CompanyData {
   phoneNumber: string;
   email: string;
   companyWebsite: string;
-}
+};

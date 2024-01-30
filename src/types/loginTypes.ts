@@ -1,6 +1,6 @@
-export type UserType = {
+export type LoginType = {
   name: string;
   email: string;
   accountPassword: string;
-  confirmPassword: string;
+  accountType: 'User' | 'Company';
 };
