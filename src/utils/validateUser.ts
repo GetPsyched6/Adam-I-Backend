@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { UserData } from '../types/userTypes';
+import { UserType } from '../types/userTypes';
 
 const userSchema = Joi.object({
   name: Joi.string().max(255).required(),
@@ -13,7 +13,7 @@ const userSchema = Joi.object({
   confirmPassword: Joi.valid(Joi.ref('accountPassword')).required(),
 }).with('accountPassword', 'confirmPassword');
 
-const validateUserData = (data: UserData) => {
+const validateUserData = (data: UserType) => {
   const { error } = userSchema.validate(data);
   return error ? error.details[0].message : null;
 };

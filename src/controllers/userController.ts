@@ -35,7 +35,10 @@ const registerUser = async (req: Request, res: Response) => {
       return res.status(400).json({ error: (error as Error).message });
     }
   } catch (error) {
-    return res.status(500).json({ error: 'User Registration Failed. Please try again later.' });
+    return res.status(500).json({
+      message: 'User Registration Failed. Please try again later.',
+      error: (error as Error).message,
+    });
   }
 };
 

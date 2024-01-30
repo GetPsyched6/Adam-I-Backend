@@ -32,10 +32,13 @@ const registerCompany = async (req: Request, res: Response) => {
         },
       });
     } catch (error) {
-      return res.status(400).send('Fail');
+      return res.status(400).json({ error: (error as Error).message });
     }
   } catch (error) {
-    return res.status(500).json({ error: 'Company Registration Failed. Please try again later.' });
+    return res.status(500).json({
+      message: 'Company Registration Failed. Please try again later.',
+      error: (error as Error).message,
+    });
   }
 };
 

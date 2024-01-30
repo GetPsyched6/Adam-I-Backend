@@ -1,13 +1,13 @@
 import Joi from 'joi';
 import { countries } from 'countries-list';
-import { CompanyData } from '../types/companyTypes';
+import { CompanyType } from '../types/companyTypes';
 
 const validCountries = Object.values(countries).map(country => country.name);
 
 const companySchema = Joi.object({
   companyName: Joi.string().max(255).required(),
   businessType: Joi.string().max(255).required(),
-  numberOfEmployees: Joi.number().integer().strict().required(),
+  numberOfEmployees: Joi.number().integer().strict().min(1).max(10000000).required(),
   yearOfEstablishment: Joi.number()
     .integer()
     .strict()
@@ -39,7 +39,7 @@ const companySchema = Joi.object({
     .required(),
 }).with('accountPassword', 'confirmPassword');
 
-const validateCompanyData = (data: CompanyData) => {
+const validateCompanyData = (data: CompanyType) => {
   const { error } = companySchema.validate(data);
   return error ? error.details[0].message : null;
 };
