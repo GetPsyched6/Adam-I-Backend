@@ -3,6 +3,6 @@ import registerCompany from '../controllers/companyController';
 
 const router = Router();
 
-router.post('/companyregister', registerCompany);
+router.post('/api/companyregister', registerCompany);
 
 export default router;
