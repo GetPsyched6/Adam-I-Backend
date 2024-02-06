@@ -14,7 +14,7 @@ app.use(userRoutes);
 app.use(companyRoutes);
 app.use(loginRoutes);
 
-app.get('/health', (req: Request, res: Response) => {
+app.get('/api/health', (req: Request, res: Response) => {
   try {
     res.status(200).json({ message: 'All systems online.' });
   } catch (error) {
