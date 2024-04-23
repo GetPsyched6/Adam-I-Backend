@@ -1,0 +1,31 @@
+name: Build and Deploy to Azure
+
+on:
+  push:
+    branches:
+      - azure-main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20.10.0'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Build
+      run: npm run build
+
+    - name: Fix Import Extensions
+      run: npm run fix-imports
+
+    - name: Deploy to Azure
+      run: |
+        npm run ssh
