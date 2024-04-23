@@ -28,7 +28,6 @@ jobs:
 
     - name: Deploy to Azure
       run: |
-        npm run ssh
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
