@@ -1,5 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 const replaceImports = (directory: string): void => {
   const files = fs.readdirSync(directory);
@@ -21,5 +24,6 @@ const replaceImports = (directory: string): void => {
   });
 };
 
-const directoryPath = path.join(__dirname, '../dist');
+// Adjust the path as needed to point to the correct `dist` directory location
+const directoryPath = path.join(currentDirectory, '../dist');
 replaceImports(directoryPath);
