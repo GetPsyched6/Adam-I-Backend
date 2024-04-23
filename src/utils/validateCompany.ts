@@ -21,7 +21,7 @@ const companySchema = Joi.object({
   postCode: Joi.string().max(255).allow(null).allow(''),
   industry: Joi.string().max(255).required(),
   accountPassword: Joi.string()
-    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,128}$/)
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d$_.!@#%^&*()\-+=]{8,128}$/)
     .required(),
   confirmPassword: Joi.valid(Joi.ref('accountPassword')).required(),
   companyAddress: Joi.string().max(512).required(),
