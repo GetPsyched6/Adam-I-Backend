@@ -48,6 +48,8 @@ jobs:
             npm install
             npm run build
             npm run fix-imports
+            npx prisma migrate deploy
+            npx prisma generate
             npm run pm2
             pm2 restart all
           ENDSSH
