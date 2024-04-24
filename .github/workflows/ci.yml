@@ -46,6 +46,8 @@ jobs:
             cd ~/workspace/backend
             git pull origin azure-main
             npm install
+            npm run build
+            npm run fix-imports
             npm run pm2
             pm2 restart all
           ENDSSH
