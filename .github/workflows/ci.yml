@@ -40,9 +40,11 @@ jobs:
 
           # SSH into the VM and execute commands
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no $USERNAME@$HOST << 'ENDSSH'
+            export PATH=/home/azureuser/.nvm/versions/node/v21.6.1/bin:$PATH
+
             # Commands to run on the VM
             cd ~/workspace/backend
             git pull origin azure-main
-            /home/azureuser/.nvm/versions/node/v21.6.1/bin/npm install
-            /home/azureuser/.nvm/versions/node/v21.6.1/bin/pm2 restart all
+            npm install
+            pm2 restart all
           ENDSSH
