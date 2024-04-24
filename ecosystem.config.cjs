@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'invest-africa',
-      script: 'dist/index.js',
+      script: 'dist/src/index.js',
       env: {
         PORT: 9000,
       },
