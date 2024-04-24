@@ -1,3 +1,6 @@
+// NOTE: This script adds '.js' to the end of imports in the final build ./dist folder
+// ! The backend will not build without corrected import statements
+
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -24,6 +27,5 @@ const replaceImports = (directory: string): void => {
   });
 };
 
-// Adjust the path as needed to point to the correct `dist` directory location
 const directoryPath = path.join(currentDirectory, '../dist');
 replaceImports(directoryPath);

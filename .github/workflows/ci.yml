@@ -9,27 +9,40 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20.10.0'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.10.0'
 
-    - name: Install Dependencies
-      run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Run Build
-      run: npm run build
+      - name: Run Build
+        run: npm run build
 
-    - name: Fix Import Extensions
-      run: npm run fix-imports
+      - name: Fix Import Extensions
+        run: npm run fix-imports
 
-    - name: Deploy to Azure
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H 172.214.74.14 >> ~/.ssh/known_hosts
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa azureuser@172.214.74.14
+      - name: Deploy to Azure
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+        run: |
+          # Install SSH key
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" | base64 --decode > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+
+          # SSH into the VM and execute commands
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no $USERNAME@$HOST << 'ENDSSH'
+            # Commands to run on the VM
+            cd ~/workspace/backend
+            git pull origin azure-main
+            npm install
+            pm2 restart all
+          ENDSSH
