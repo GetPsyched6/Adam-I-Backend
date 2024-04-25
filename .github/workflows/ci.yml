@@ -48,7 +48,8 @@ jobs:
             npm install
             npm run build
             npm run fix-imports
-            npm prune --production --loglevel verbose
+            npm prune --production
+            npm run lint
             npx prisma migrate deploy
             npx prisma generate
             npm run pm2
