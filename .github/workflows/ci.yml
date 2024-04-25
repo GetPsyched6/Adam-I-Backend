@@ -45,9 +45,10 @@ jobs:
             # Commands to run on the VM
             cd ~/workspace/backend
             git pull origin azure-main
-            npm install --omit=dev
+            npm install
             npm run build
             npm run fix-imports
+            npm prune --production
             npx prisma migrate deploy
             npx prisma generate
             npm run pm2
