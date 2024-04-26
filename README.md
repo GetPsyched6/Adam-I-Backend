@@ -2,7 +2,7 @@
 
 ## Development Workflow
 
-- Ensure to run `npm run postinstall` before opening a PR for eslinting and prettier checks.
+- Run `npm run postinstall` before opening a PR for eslinting and prettier checks.
 - PRs should strictly be made to the `dev` branch.
 - Meaningful commit messages are required for every change.
 - Regularly pull from the branch to avoid merge conflicts.
