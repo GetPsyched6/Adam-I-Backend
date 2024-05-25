@@ -20,7 +20,16 @@ module.exports = {
   rules: {
     quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     indent: ['error', 2, { SwitchCase: 1 }],
-    'import/extensions': 0,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
     'prettier/prettier': [

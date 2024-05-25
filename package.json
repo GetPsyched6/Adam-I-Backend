@@ -8,6 +8,8 @@
     "start": "npx tsx src/index.ts",
     "build": "tsc",
     "dev": "nodemon --exec npx tsx src/index.ts",
+    "pm2": "pm2 start ecosystem.config.cjs",
+    "fix-imports": "node ./dist/fixImports.js",
     "lint": "eslint . --ext .ts --fix",
     "prettier": "prettier --write .",
     "postinstall": "npm run lint && npm run prettier",
