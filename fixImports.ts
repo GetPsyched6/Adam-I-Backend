@@ -18,7 +18,7 @@ const replaceImports = (directory: string): void => {
       replaceImports(filePath);
     } else if (filePath.endsWith('.js')) {
       let content = fs.readFileSync(filePath, 'utf8');
-      // This regex checks for relative paths that start with './' or '../'
+      // * This regex checks for relative paths that start with './' or '../'
       content = content.replace(/import\s+(.+?)\s+from\s+['"](\..+?)['"]/g, (match, p1, p2) => {
         if (!p2.endsWith('.js')) return `import ${p1} from '${p2}.js'`;
         return match;
